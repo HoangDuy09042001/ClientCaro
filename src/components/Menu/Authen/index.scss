@@ -1,0 +1,80 @@
+.authen {
+    background-color: rgba(0,0,0,0.8);
+    position: relative;
+    width: 300px;
+    padding: 0 16px;
+    .title-authen {
+        color: white;
+        font-size: 30px;
+    }
+   .info-authen {
+    margin-top: 25px;
+    .info-item {
+        display: flex;
+        border-color: transparent;
+        border-radius: 5px;
+        svg {
+            background-color: #ffc312;
+            border-top-left-radius:5px ;
+            border-bottom-left-radius:5px ;
+        }
+        input {
+            cursor: pointer;
+            flex:1;
+            border: none;
+            outline: none;
+            background: white;
+            height: 28px;
+        }
+    }
+    .info-item:first-child {
+        margin-bottom: 5px;
+    }
+    .info-item.none {
+        display: none;
+    }
+   }
+   .btn-authen {
+    width: 50px;
+    background-color: #ffc312;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: calc(100% - 58px);
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+   } 
+   .passage {
+    color: white;
+    padding-bottom: 20px;
+    text-align: center;
+    cursor: pointer;
+   }
+   .close-btn {
+    position: absolute;
+    top: -15px;
+    left: -13px;
+   }
+   .relative-auth {
+    position: absolute;
+    top: -25px;
+    right: -10px;
+    display: flex;
+    .relative-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background-color: #ffc312;
+        border-radius: 4px;
+    }
+    .relative-item:nth-child(2) {
+        margin: 0 5px;
+    }
+   }
+}
