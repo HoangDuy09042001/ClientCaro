@@ -1,45 +1,58 @@
 import "./index.scss";
 import io from "socket.io-client";
 import { useState } from "react";
-import GridBoard from '../GridBoard'
+import GridBoard from "../GridBoard";
+import Close from "../icons/Close";
 
 const socket = io.connect("http://localhost:8080");
 
-function Room({size, isLoginSystem}) {
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
+function Room({ size, isLoginSystem, userInfors, openMenu,ranking }) {
+  const randomRoom = (Math.floor(Math.random() * 1000) + 1) 
+  const [room, setRoom] = useState(randomRoom);
   const [showChat, setShowChat] = useState(false);
 
-  const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      socket.emit("join_room", room);
+  const joinRoom = (randomRoom) => {
+    if (userInfors.userName !== "" && randomRoom !== "") {
+      console.log('join room idNode', userInfors.idNode)
+      const data = {
+        idNode: userInfors.idNode,
+        id: userInfors.id,
+        room: randomRoom
+      }
+      socket.emit("join_room", data);
       setShowChat(true);
     }
   };
 
   return (
-    <div className={isLoginSystem ? "Room" : "Room none"}>
+    <div className={isLoginSystem&&!ranking ? "Room" : "Room none"}>
       {!showChat ? (
-        <div className="joinChatContainer">
-          <h3>Join A Chat</h3>
-          <input
-            type="text"
-            placeholder="John..."
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Room ID..."
-            onChange={(event) => {
-              setRoom(event.target.value);
-            }}
-          />
-          <button onClick={joinRoom}>Join A Room</button>
+        <div className="rooms">
+          <div className="create-room" onClick={()=>{joinRoom(room)}}>
+            Create Room
+          </div>
+          <div className="join-room">
+            <input
+              type="text"
+              placeholder="Room ID..."
+              onChange={(event) => {
+                setRoom(+event.target.value);
+              }}
+            />
+            <div className="join-room-title" onClick={()=>{joinRoom(room)}}>Join Room</div>
+          </div>
+          <div className="close"><Close/></div>
         </div>
       ) : (
-        <GridBoard size={size} socket={socket} username={username} room={room}/>
+        <GridBoard
+          size={size}
+          socket={socket}
+          username={userInfors.userName}
+          id= {userInfors.id}
+          idNode= {userInfors.idNode}
+          room={room}
+          openMenu={openMenu}
+        />
       )}
     </div>
   );

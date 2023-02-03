@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&family=Dancing+Script&display=swap");
+.banner {
+  background-image: url("../../assets/tictactoe.png");
+  background-size: contain;
+  min-height: 100vh;
+  .header-banner {
+    width: fit-content;
+    margin: auto;
+    position: relative;
+    .ranking-total-icon {
+      position: absolute;
+      top: 10px;
+      left: 156px;
+    }
+    .ranking-title {
+      font-family: "Dancing Script", cursive;
+      position: absolute;
+      top: 108px;
+      left: 158px;
+      font-size: 30px;
+      font-weight: bold;
+      font-family: "Dancing Script", cursive;
+      font-size: 36px;
+
+      color: #fff;
+      text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
+        0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
+    }
+  }
+  .body-banner {
+    .banner-item {
+      position: relative;
+      width: 800px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      background-color: #83135cbf;
+      margin: auto;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: #ccc solid 6px;
+      .banner-icon-item {
+        position: absolute;
+        top: -35px;
+        left: -28px;
+        display: flex;
+        justify-content: center;
+        background-color: #ccc;
+        width: fit-content;
+        border-radius: 100%;
+      }
+      .banner-icon-username {
+        flex: 1;
+        text-align: center;
+        font-family: "Dancing Script", cursive;
+      font-size: 36px;
+
+      color: #fff;
+      text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
+        0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
+      }
+      .banner-icon-score {
+        flex: 1;
+        text-align: center;
+        font-family: "Dancing Script", cursive;
+      font-size: 36px;
+
+      color: #fff;
+      text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
+        0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
+      }
+    }
+  }
+}
+.banner.none {
+  display: none;
+}

@@ -6,7 +6,7 @@ import SingleUser from "../icons/SingleUser";
 import Ranking from "../icons/Ranking";
 import Authen from "./Authen";
 import "./index.scss";
-const Menu = ({changeIsLoginSystem, isLoginSystem}) => {
+const Menu = ({changeIsLoginSystem, isLoginSystem, changeRanking}) => {
   const [isAuthen, setAuthen] = useState(false)
   const clickAuthen = () => {
     setAuthen(!isAuthen)
@@ -31,12 +31,14 @@ const Menu = ({changeIsLoginSystem, isLoginSystem}) => {
           <MultipleUsers height={40} width={40} />
           Multi Player
         </div>
-        <div className="body_menu-item">
+        <div className="body_menu-item" onClick={changeRanking}>
           <Ranking height={40} width={40} />
           Ranking
         </div>
       </div>
-      <div className={isAuthen ? "authenticate" : "authenticate none"}><Authen changeIsLoginSystem={changeIsLoginSystem} clickAuthen={clickAuthen}/></div>
+      <div className={isAuthen ? "authenticate" : "authenticate none"}>
+        <Authen changeIsLoginSystem={changeIsLoginSystem} clickAuthen={clickAuthen}/>
+      </div>
     </div>
   );
 };

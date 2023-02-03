@@ -34,7 +34,7 @@ const Authen = ({ clickAuthen, changeIsLoginSystem }) => {
 
           console.log(reponse.data);
           if (reponse.data) {
-            changeIsLoginSystem();
+            changeIsLoginSystem(reponse.data);
           }
         } catch (err) {
           console.log(err);
@@ -47,9 +47,10 @@ const Authen = ({ clickAuthen, changeIsLoginSystem }) => {
       try {
         if (data.password[0] === data.confirmpassword[0]) {
           const reponse = await axios.post(`http://localhost:8080/api/user`, {
+            id: uuidv4(),
             userName: data.username[0],
             password: data.password[0],
-            id: uuidv4(),
+            score: 0
           });
           console.log(reponse.data);
         } else {
