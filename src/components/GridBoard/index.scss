@@ -8,12 +8,37 @@
     align-items: center;
     justify-content: space-around;
     .hbg-item {
+      position: relative;
       font-family: "Dancing Script", cursive;
       font-size: 36px;
-
+      display: flex;
+      align-items: center;
       color: #fff;
       text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
         0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
+      .avt {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        background-color: #ccc;
+      }
+      .avt:nth-child(1) {
+        margin-left: 10px;
+      }
+      .avt:nth-child(1) {
+        margin-right: 10px;
+      }
+      .pseudo {
+       position: absolute;
+       top: 58px;
+       left: 130px;
+       background-image: url(../../assets/stupid.png);
+       width: 200px;
+       height: 200px;
+       background-size: cover;
+       border-radius: 4px;
+       border: #ccc solid 2px;
+      }
     }
   }
   .info-turn {

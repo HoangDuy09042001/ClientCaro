@@ -1,0 +1,40 @@
+.you-win {
+    position: relative;
+    width: 100wh;
+    height: 100vh;
+    background-image: url('../../assets/victory.png');
+    background-size: cover;
+    background-position: center;
+    .left-arrow {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+}
+.you-lose {
+    position: relative;
+    width: 100wh;
+    height: 100vh;
+    background-image: url('../../assets/defeat.png');
+    background-size: cover;
+    background-position: center;
+    .left-arrow {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+}
+
+.just-play {
+    position: relative;
+    width: 100wh;
+    height: 100vh;
+    background-image: url('../../assets/justplay.jpg');
+    background-size: cover;
+    background-position: center;
+    .left-arrow {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+}

@@ -1,12 +1,13 @@
 import RankingCrown from "../icons/RankingCrown";
 import Banner from "../icons/Banner";
+import CloseSetting from "../icons/CloseSetting";
 import Top1 from "../icons/Top1";
 import Top2 from "../icons/Top2";
 import Top3 from "../icons/Top3";
 import axios from "axios";
 import "./index.scss";
 import { useEffect, useState } from "react";
-const Ranking = ({ranking, isLoginSystem}) => {
+const Ranking = ({closeRanking}) => {
   const [rankingMatrix, setRankingMatrix] = useState([]);
   const moutedFunction = async () => {
     try {
@@ -30,6 +31,7 @@ const Ranking = ({ranking, isLoginSystem}) => {
         </div>
         <div className="ranking-total-icon">
           <RankingCrown height={100} width={100} />
+          <div className="close-btn" onClick={closeRanking}><CloseSetting width={50} height={50}/></div>
         </div>
         <div className="ranking-title">Ranking</div>
       </div>

@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text&family=Dancing+Script&display=swap");
-.grid-board {
+.grid-board-single {
   position: relative;
   background-image: url("../../assets/tictactoe.png");
+  min-height: 100vh;
   .header-grid-board {
     height: 20vh;
     display: flex;
@@ -10,7 +11,6 @@
     .hbg-item {
       font-family: "Dancing Script", cursive;
       font-size: 36px;
-
       color: #fff;
       text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
         0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
@@ -36,6 +36,20 @@
     }
     .time.none {
       display: none;
+    }
+    .choices {
+      display: flex;
+      .choice-btn {
+        display: flex;
+        background-color: #2f88ff;
+        width: 15px;
+        height: 5px;
+        .switch {
+          width: 5px;
+          height: 5px;
+          background-color: #ccc;
+        }
+      }
     }
   }
   .body-grid-board {

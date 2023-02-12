@@ -1,0 +1,84 @@
+.setting {
+    background-color: #ffc312;
+    width: 800px;
+    border-radius: 5px;
+    border: black solid 5px;
+  .close-btn {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .avt {
+    position: relative;
+    width: 100px;
+    margin: auto;
+    margin-top: 25px;
+    .image {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+      border: black solid 1px;
+      border-radius: 100%;
+      margin-bottom: 25px;
+    }
+  }
+  .user-info {
+    width: 300px;
+    margin: auto;
+    margin-top: 25px;
+    .info-item {
+      display: flex;
+      border-color: transparent;
+      border-radius: 5px;
+      svg {
+        background-color: #ffc312;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      input {
+        cursor: pointer;
+        flex: 1;
+        border: none;
+        outline: none;
+        background: white;
+        height: 28px;
+      }
+    }
+    .info-item:first-child, .info-item:nth-child(2) {
+      margin-bottom: 5px;
+    }
+  }
+  .verify-face {
+    width: 300px;
+    height: 28px;
+    background-color: rgb(57, 191, 191);
+    border-radius: 4px;
+    border: black solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 25px;
+    cursor: pointer;
+  }
+  .verify-face:hover {
+    background-color: rgb(24, 135, 135);
+    color: white;
+  }
+  .update-btn {
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: black solid 1px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .update-btn:hover {
+    background-color: #d18213;
+    color: white;
+  }
+}

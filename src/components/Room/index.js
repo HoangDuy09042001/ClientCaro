@@ -6,7 +6,7 @@ import Close from "../icons/Close";
 
 const socket = io.connect("http://localhost:8080");
 
-function Room({ size, isLoginSystem, userInfors, openMenu,ranking }) {
+function Room({ size, isLoginSystem, userInfors, ranking, closeMultiplePlayer }) {
   const randomRoom = (Math.floor(Math.random() * 1000) + 1) 
   const [room, setRoom] = useState(randomRoom);
   const [showChat, setShowChat] = useState(false);
@@ -17,6 +17,7 @@ function Room({ size, isLoginSystem, userInfors, openMenu,ranking }) {
       const data = {
         idNode: userInfors.idNode,
         id: userInfors.id,
+        imgUrl: userInfors.imgUrl,
         room: randomRoom
       }
       socket.emit("join_room", data);
@@ -50,8 +51,9 @@ function Room({ size, isLoginSystem, userInfors, openMenu,ranking }) {
           username={userInfors.userName}
           id= {userInfors.id}
           idNode= {userInfors.idNode}
+          imgUrl= {userInfors.imgUrl}
           room={room}
-          openMenu={openMenu}
+          closeMultiplePlayer={closeMultiplePlayer}
         />
       )}
     </div>
