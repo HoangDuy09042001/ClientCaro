@@ -215,6 +215,19 @@
       height: 50px;
     }
   }
+  .sound {
+    position: absolute;
+    align-items: center;
+    top: 15px;
+    left: 80px;
+    cursor: pointer;
+    font-family: "Dancing Script", cursive;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    color: rgb(178, 36, 126);
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe, 0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
+  }
   .chat-box.zoom-in.none {
     display: none;
   }

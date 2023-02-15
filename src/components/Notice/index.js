@@ -1,13 +1,12 @@
 import LeftArrow from "../icons/LeftArrow";
 import "./index.scss";
-const YouWin = ({ openMenu, closeAiGrid }) => {
+const YouWin = ({ changeState }) => {
   return (
     <div className="you-win">
       <div
         className="left-arrow"
         onClick={() => {
-          openMenu && openMenu();
-          closeAiGrid && closeAiGrid();
+          changeState()
         }}
       >
         <LeftArrow width={50} height={50} />
@@ -15,14 +14,13 @@ const YouWin = ({ openMenu, closeAiGrid }) => {
     </div>
   );
 };
-const YouLose = ({ openMenu, closeAiGrid }) => {
+const YouLose = ({ changeState }) => {
   return (
     <div className="you-lose">
       <div
         className="left-arrow"
         onClick={() => {
-          openMenu && openMenu();
-          closeAiGrid && closeAiGrid();
+          changeState()
         }}
       >
         <LeftArrow width={50} height={50} />
@@ -30,10 +28,10 @@ const YouLose = ({ openMenu, closeAiGrid }) => {
     </div>
   );
 };
-const JustPlay = ({ openMenu }) => {
+const JustPlay = ({ changeState }) => {
   return (
     <div className="just-play">
-      <div className="left-arrow" onClick={openMenu}>
+      <div className="left-arrow" onClick={changeState}>
         <LeftArrow width={50} height={50} />
       </div>
     </div>

@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&family=Dancing+Script&display=swap");
+.background-theme-component {
+    background-color: rgba(0,0,0,0.2);
+    padding: 30px;
+    font-family: "Dancing Script", cursive;
+    text-shadow: 2px 2px 2px #cc0000;
+    border-radius: 4px;
+    .background-theme-title {
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        color: white;
+        margin-bottom: 25px;
+    }
+    .background-theme-body {
+        cursor: pointer;
+        border-radius: 4px;
+        width: 600px;
+        height: 300px;
+      .item-background {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        .item-sm-bg {
+            color: white;
+            width: calc((100%/3));
+            background-position: center;
+            background-size: cover;
+        }
+        .item-sm-bg:hover {
+            color: yellow;
+        }
+      }
+      .valentine {
+        background-image: url('../../../assets/theme/valentine.png');
+      }
+      .evil {
+        background-image: url('../../../assets/theme/evil.png');
+      }
+      .heaven {
+        background-image: url('../../../assets/theme/heaven.png');
+      }
+      .honor {
+        background-image: url('../../../assets/theme/honor.png');
+      }
+      .chill {
+        background-image: url('../../../assets/theme/chill.png');
+      }
+      .latin {
+        background-image: url('../../../assets/theme/latin.png');
+      }
+    }
+
+}

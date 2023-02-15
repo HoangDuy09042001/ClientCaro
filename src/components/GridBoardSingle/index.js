@@ -6,7 +6,7 @@ import { YouLose, YouWin } from "../Notice";
 import "./index.scss";
 const { GameStep } = Minimax;
 
-const GridBoardSingle = ({ room, difficulty, closeAiGrid }) => {
+const GridBoardSingle = ({ room, difficulty, changeState}) => {
   useEffect(() => {
     console.log("diffi", difficulty);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -213,9 +213,9 @@ const GridBoardSingle = ({ room, difficulty, closeAiGrid }) => {
       )}
       {!continueGame &&
         (winPlayer === "huPlayer" ? (
-          <YouWin closeAiGrid={closeAiGrid} />
+          <YouWin changeState={()=>{changeState('menu')}} />
         ) : (
-          <YouLose closeAiGrid={closeAiGrid} />
+          <YouLose changeState={()=>{changeState('menu')}} />
         ))}
     </>
   );

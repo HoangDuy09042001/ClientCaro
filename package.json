@@ -18,10 +18,13 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "react-scroll-to-bottom": "^4.2.0",
+    "react-snowfall": "^1.2.1",
     "react-webcam": "^7.0.1",
     "socket.io-client": "^4.5.4",
     "text-animations-react": "^0.1.8",
     "tic-tac-toe-minimax": "^1.0.8",
+    "ts-node": "10.9.1",
+    "typescript": "^5.0.0-dev.20230213",
     "uuid": "^9.0.0",
     "wait-on": "^7.0.1",
     "web-vitals": "^2.1.0"

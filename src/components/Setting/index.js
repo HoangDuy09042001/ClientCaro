@@ -7,7 +7,7 @@ import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../Base";
 import "./index.scss";
-function Setting({ userInfors, closeSetting }) {
+function Setting({ userInfors, changeStateMenu }) {
   const [faceioInstance, setFaceioInstance] = useState(null)
 
   useEffect(() => {
@@ -166,7 +166,7 @@ function Setting({ userInfors, closeSetting }) {
   };
   return (
     <div className="setting">
-      <div className="close-btn" onClick={closeSetting}><CloseSetting height={50} width={50}/></div>
+      <div className="close-btn" onClick={()=>{changeStateMenu(null)}}><CloseSetting height={50} width={50}/></div>
       <div className="avt">
         <div className="upload-tag">
           <div className="image" style={{backgroundImage: `url(${imgUrl||userInfors.imgUrl})`, backgroundSize: 'cover'}}><div className="upload-btn" onClick={uploadFile}><Upload /></div></div>

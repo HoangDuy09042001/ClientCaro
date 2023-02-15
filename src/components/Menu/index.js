@@ -1,82 +1,96 @@
 import React, { useState } from "react";
-import LeftArrow from "../icons/LeftArrow";
-import MultipleUsers from "../icons/MultipleUsers";
-import Setting from "../icons/Setting";
-import SingleUser from "../icons/SingleUser";
-import Ranking from "../icons/Ranking";
 import Authen from "./Authen";
 import SettingComponent from "../Setting";
+import Theme from "../Theme";
 import "./index.scss";
 const Menu = ({
+  changeState,
   changeIsLoginSystem,
-  changeRanking,
-  openSigleGrid,
-  openMultiplePlayer,
+  difficulty,
+  changeTheme,
   isLoginSystem,
-  multiplePlayer,
-  onpenPlayRound,
   userInfors,
-  closeMenu,
   setEasyMode,
   setNormalMode,
-  setHardMode
+  setHardMode,
 }) => {
+  const StateMenu = {
+    setting: "setting",
+    mulgame: "mulgame",
+    theme: 'theme',
+  };
   const [isAuthen, setAuthen] = useState(false);
-  const [setting, setSetting] = useState(false);
-  const [openSettingVar, setOpenSettingVar] = useState(false);
-  const clickAuthen = () => {
-    setAuthen(!isAuthen);
+  const closeAuthen = () => {
+    setAuthen(false);
   };
-  const openSetting = () => {
-    setSetting(true);
+  const [stateMenu, setStateMenu] = useState(null);
+  const changeStateMenu = (s) => {
+    setStateMenu(s);
   };
-  const checkSetting = () => {
-    if (setting === false) {
-      setAuthen(true);
-    }
-    setOpenSettingVar(!openSettingVar);
-  };
-  const closeSetting = ()=>{
-    setSetting(false)
-    setOpenSettingVar(false)
-  }
   return (
     <div className="menu">
       <div className="menu_header">
-        <div className="icon-menu">
-          <LeftArrow height={35} width={35} />
-        </div>
+        <div className="icon-setting"></div>
         <div className="title-menu">Caro Desktop Game</div>
-        <div className="icon-menu" onClick={checkSetting}>
-          <Setting height={35} width={35} />
+        <div className="icon-setting">
+          <div className="setting-theme" onClick={()=>{
+            changeStateMenu("theme");
+            if (isLoginSystem === false) {
+              setAuthen(true);
+            }
+          }}>Theme</div>
+          <div
+            className="setting-verify"
+            onClick={() => {
+              changeStateMenu("setting");
+              if (isLoginSystem === false) {
+                setAuthen(true);
+              }
+            }}
+          >
+            Verify
+          </div>
         </div>
       </div>
       <div className="body-menu">
-        <div className="body_menu-item" onClick={openSigleGrid}>
-          <SingleUser height={40} width={40} />
+        <div
+          className="body_menu-item"
+          onClick={() => {
+            changeState("siggame");
+          }}
+        >
           Single Player
           <div className="choices">
-            <div className="choice-btn" onClick={setEasyMode}>Easy</div>
-            <div className="choice-btn" onClick={setNormalMode}>Normal</div>
-            <div className="choice-btn" onClick={setHardMode}>Hard</div>
+            <div className={difficulty==='Easy' ? "choice-btn active" : "choice-btn"} onClick={setEasyMode}>
+              Easy
+            </div>
+            <div className={difficulty==='Normal' ? "choice-btn active" : "choice-btn"} onClick={setNormalMode}>
+              Normal
+            </div>
+            <div className={difficulty==='Hard' ? "choice-btn active" : "choice-btn"} onClick={setHardMode}>
+              Hard
+            </div>
           </div>
         </div>
         <div
           className="body_menu-item"
           onClick={() => {
-            if (!isLoginSystem) {
-              clickAuthen();
-            }else if(isLoginSystem) {
-              closeMenu()
+            changeStateMenu("mulgame");
+            if (isLoginSystem === true) {
+              changeState("room");
+            } else if (isLoginSystem === false) {
+              setAuthen(true);
             }
-            openMultiplePlayer();
           }}
         >
-          <MultipleUsers height={40} width={40} />
           Multi Player
         </div>
-        <div className="body_menu-item" onClick={changeRanking}>
-          <Ranking height={40} width={40} />
+        <div
+          className="body_menu-item"
+          onClick={() => {
+            changeState("ranking");
+          }}
+        >
           Ranking
         </div>
       </div>
@@ -84,16 +98,26 @@ const Menu = ({
         <div className="authenticate">
           <Authen
             changeIsLoginSystem={changeIsLoginSystem}
-            clickAuthen={clickAuthen}
-            openSetting={openSetting}
-            multiplePlayer={multiplePlayer}
-            onpenPlayRound={onpenPlayRound}
+            closeAuthen={closeAuthen}
+            changeState={changeState}
+            stateMenu={stateMenu}
           />
         </div>
       )}
-      {setting && openSettingVar && (
+      {stateMenu === StateMenu.theme && isLoginSystem && (
         <div className="setting-component">
-          <SettingComponent userInfors={userInfors} closeSetting={closeSetting}/>
+          <Theme
+            changeTheme={changeTheme}
+            changeStateMenu={changeStateMenu}
+          />
+        </div>
+      )}
+      {stateMenu === StateMenu.setting && isLoginSystem && (
+        <div className="setting-component">
+          <SettingComponent
+            userInfors={userInfors}
+            changeStateMenu={changeStateMenu}
+          />
         </div>
       )}
     </div>

@@ -2,13 +2,29 @@ import React, { useRef, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import X from "../icons/X";
 import O from "../icons/O";
+import sound from '../../assets/sound/clickYou.wav'
+import soundGame from '../../assets/sound/gridboard.mp3'
 import Messenger from "../icons/Messenger";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { YouWin } from "../Notice";
 import { YouLose } from "../Notice";
+import Pause from "../icons/Pause";
+import Running from "../icons/Running";
 import "./index.scss";
-
-const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlayer, imgUrl }) => {
+const soundObj = new Audio(soundGame)
+const soundObjClick = new Audio(sound)
+const GridBoard = ({
+  size,
+  socket,
+  username,
+  room,
+  id,
+  idNode,
+  imgUrl,
+  changeState,
+}) => {
+  const [soundTurn, setSoundTurn] = useState(1)
+  const [soundGameGrid, setSoundGame] = useState(true)
   const [score_1, setScore_1] = useState(0);
   const [score_2, setScore_2] = useState(0);
   const [opponent, setOpponent] = useState({
@@ -38,7 +54,22 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
     return initalMatrix;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
+  useEffect(()=>{
+    playGame()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  useEffect(()=>{
+   if(soundGameGrid===true) {
+    playGame()
+   }else if(soundGameGrid===false) {
+    stopSound()
+   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [soundGameGrid])
+  const stopSound=()=>{
+    soundObj.pause()
+  }
   useEffect(() => {
     moutedFunction();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,6 +126,9 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
     }
   };
 
+  const toggleSound=()=>{
+    setSoundGame(!soundGameGrid)
+  }
   useEffect(() => {
     socket.on("receive_data", (data) => {
       data.chat &&
@@ -136,14 +170,14 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
           setOpponent({
             idNode: data.secondStepNode,
             id: data.secondStep,
-            imgUrl: data.secondStepImgUrl
+            imgUrl: data.secondStepImgUrl,
           });
           setTurn(true);
         } else {
           setOpponent({
             idNode: data.firstStepNode,
             id: data.firstStep,
-            imgUrl: data.firstStepImgUrl
+            imgUrl: data.firstStepImgUrl,
           });
           setTurn(false);
         }
@@ -152,7 +186,15 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
-
+  function play(){
+    soundObjClick.play()
+  }
+  function playGame(){
+    soundObj.play()
+  }
+  useEffect(()=>{
+  play()
+  }, [soundTurn])
   useEffect(() => {
     console.log(grid);
     grid.forEach((value) => {
@@ -175,6 +217,7 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
         }
       });
     }, 1000);
+    console.log('sound', soundTurn)
     return () => clearInterval(intervalId.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [grid]);
@@ -367,11 +410,24 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
         <div className="grid-board">
           <div className="header-grid-board">
             <div className="hbg-item">
-              You: {score_1} <div className="avt" style={{backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover'}}></div>
+              You: {score_1}{" "}
+              <div
+                className="avt"
+                style={{
+                  backgroundImage: `url(${imgUrl})`,
+                  backgroundSize: "cover",
+                }}
+              ></div>
             </div>
             <div className="hbg-item">
-              <div className="avt" style={{backgroundImage: `url(${opponent.imgUrl})`, backgroundSize: 'cover'}}></div> {score_2} : Component{" "}
-              {stupid && <div className="pseudo"></div>}
+              <div
+                className="avt"
+                style={{
+                  backgroundImage: `url(${opponent.imgUrl})`,
+                  backgroundSize: "cover",
+                }}
+              ></div>{" "}
+              {score_2} : Component {stupid && <div className="pseudo"></div>}
             </div>
           </div>
           <div className="info-turn">
@@ -395,7 +451,8 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
                           className={"sub-line"}
                           key={index + idx + ""}
                           onClick={() => {
-                            sendData(index, idx);
+                            turn&&sendData(index, idx);
+                            turn&&setSoundTurn(soundTurn+1)
                           }}
                         >
                           {ite === id ? (
@@ -480,23 +537,20 @@ const GridBoard = ({ size, socket, username, room, id, idNode, closeMultiplePlay
             <Messenger height={50} width={50} clickContact={clickContact} />
           </div>
           <div className="room">Room: {room} </div>
+          <div className="sound" onClick={toggleSound}>Sound: {soundGameGrid?<Running width={30} height={30}/>:<Pause width={30} height={30}/>}</div>
         </div>
       )}
       {!continueGame &&
         (win ? (
           <YouWin
-            openMenu={() => {
-              setWin()
-              setContinueGame(true);
-              closeMultiplePlayer()
+            changeState={() => {
+              changeState("menu");
             }}
           />
         ) : (
           <YouLose
-            openMenu={() => {
-              setWin()
-              setContinueGame(true);
-              closeMultiplePlayer()
+            changeState={() => {
+              changeState("menu");
             }}
           />
         ))}

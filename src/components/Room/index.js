@@ -6,7 +6,7 @@ import Close from "../icons/Close";
 
 const socket = io.connect("http://localhost:8080");
 
-function Room({ size, isLoginSystem, userInfors, ranking, closeMultiplePlayer }) {
+function Room({ size, isLoginSystem, userInfors, changeState }) {
   const randomRoom = (Math.floor(Math.random() * 1000) + 1) 
   const [room, setRoom] = useState(randomRoom);
   const [showChat, setShowChat] = useState(false);
@@ -26,7 +26,7 @@ function Room({ size, isLoginSystem, userInfors, ranking, closeMultiplePlayer })
   };
 
   return (
-    <div className={isLoginSystem&&!ranking ? "Room" : "Room none"}>
+    <div className={isLoginSystem ? "Room" : "Room none"}>
       {!showChat ? (
         <div className="rooms">
           <div className="create-room" onClick={()=>{joinRoom(room)}}>
@@ -42,7 +42,7 @@ function Room({ size, isLoginSystem, userInfors, ranking, closeMultiplePlayer })
             />
             <div className="join-room-title" onClick={()=>{joinRoom(room)}}>Join Room</div>
           </div>
-          <div className="close"><Close/></div>
+          <div className="close" onClick={()=>{changeState('menu')}}><Close/></div>
         </div>
       ) : (
         <GridBoard
@@ -53,7 +53,7 @@ function Room({ size, isLoginSystem, userInfors, ranking, closeMultiplePlayer })
           idNode= {userInfors.idNode}
           imgUrl= {userInfors.imgUrl}
           room={room}
-          closeMultiplePlayer={closeMultiplePlayer}
+          changeState={changeState}
         />
       )}
     </div>

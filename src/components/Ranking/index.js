@@ -7,7 +7,7 @@ import Top3 from "../icons/Top3";
 import axios from "axios";
 import "./index.scss";
 import { useEffect, useState } from "react";
-const Ranking = ({closeRanking}) => {
+const Ranking = ({changeState}) => {
   const [rankingMatrix, setRankingMatrix] = useState([]);
   const moutedFunction = async () => {
     try {
@@ -31,7 +31,7 @@ const Ranking = ({closeRanking}) => {
         </div>
         <div className="ranking-total-icon">
           <RankingCrown height={100} width={100} />
-          <div className="close-btn" onClick={closeRanking}><CloseSetting width={50} height={50}/></div>
+          <div className="close-btn" onClick={()=>{changeState('menu')}}><CloseSetting width={50} height={50}/></div>
         </div>
         <div className="ranking-title">Ranking</div>
       </div>

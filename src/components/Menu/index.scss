@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap");
 .menu {
-  background-image: url('../../assets/tictactoe4.png');
+  // background-image: url('../../assets/tictactoe4.png');
+  background-color: transparent;
   position: relative;
   background-size: contain;
   overflow: hidden;
@@ -10,7 +11,6 @@
     justify-content: space-around;
     height: 30vh;
     .icon-menu {
-      position: relative;
       width: 60px;
       height: 160px;
       display: flex;
@@ -21,10 +21,44 @@
       cursor: pointer;
       background-color: #a3831d;
     }
+    .icon-setting {
+      position: relative;
+      margin-top: 25px;
+      width: 200px;
+      height: 200px;
+      background-image: url("../../assets/m_settingpart.png");
+      background-position: center;
+      background-size: contain;
+      .setting-verify {
+        cursor: pointer;
+        color: #fff;
+        position: absolute;
+        bottom: 25px;
+        left: 48px;
+        width: 100px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .setting-theme {
+        cursor: pointer;
+        color: #fff;
+        position: absolute;
+        top: 55px;
+        left: 48px;
+        width: 100px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
     .title-menu {
-      font-family: 'Crimson Text', serif;
+      font-family: "Crimson Text", serif;
       font-size: 68px;
       height: 160px;
+      text-align: center;
       display: flex;
       align-items: flex-end;
       color: #fff;
@@ -32,28 +66,44 @@
         0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
     }
   }
+  .body-menu-svg {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .body-menu {
     .body_menu-item {
+      background-image: url("../../assets/m_singlemenu\ \(2\).png");
+      background-position: center;
+      font-size: 32px;
+      text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
+        0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
       display: flex;
-      width: 75%;
-      max-width: 600px;
+      justify-content: center;
       margin: auto;
-      height: 80px;
+      width: 500px;
+      height: 130px;
       align-items: center;
       cursor: pointer;
       margin-bottom: 35px;
       svg {
-          width: 75px;
+        width: 75px;
       }
-      border: #000 solid 4px;
-      border-radius: 5px;
-      font-family: 'Crimson Text', serif;
+      font-family: "Crimson Text", serif;
       font-weight: 600;
-      background-color: #a3831d;
+      font-family: "Dancing Script", cursive;
     }
     .body_menu-item:nth-child(1) {
+      position: relative;
       .choices {
-        flex: 1;
+        position: absolute;
+        top: 18px;
+        right: 108px;
+        color: yellow;
+        font-size: 14px;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.2);
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -68,12 +118,12 @@
           border-top: #000 solid 1px;
           border-bottom: #000 solid 1px;
         }
-        
-        .choice-btn:hover {
-          background-color: #bc13fe;
+
+        .choice-btn.active {
+          background-color: rgba(161, 19, 121, 0.8);
           color: white;
           border-radius: 4px;
-          border-left: #000 solid 1px;
+          border: #000 solid 1px;
         }
       }
     }
@@ -88,10 +138,10 @@
     align-items: center;
     justify-content: center;
     transform: translateY(20%);
-    background-color: rgba(0,0,0,0.2)
+    background-color: rgba(0, 0, 0, 0.2);
   }
   .authenticate.none {
-     display: none;
+    display: none;
   }
   .setting-component {
     width: 100vw;
@@ -104,4 +154,13 @@
 }
 .menu.none {
   display: none;
+}
+@media screen and (max-width: 939.2px) {
+  .menu {
+    .menu_header {
+      .title-menu {
+        font-size: 34px;
+      }
+    }
+  }
 }
