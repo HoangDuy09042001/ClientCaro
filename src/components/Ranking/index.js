@@ -5,13 +5,14 @@ import Top1 from "../icons/Top1";
 import Top2 from "../icons/Top2";
 import Top3 from "../icons/Top3";
 import axios from "axios";
+import URL from "../../api";
 import "./index.scss";
 import { useEffect, useState } from "react";
 const Ranking = ({changeState}) => {
   const [rankingMatrix, setRankingMatrix] = useState([]);
   const moutedFunction = async () => {
     try {
-      const reponse = await axios.get(`http://localhost:8080/api/users`);
+      const reponse = await axios.get(`${URL}/api/users`);
       console.log(reponse.data);
       if (reponse.data) {
         setRankingMatrix(reponse.data);

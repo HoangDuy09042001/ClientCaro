@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import URL from "../../api";
 import X from "../icons/X";
 import O from "../icons/O";
 import sound from '../../assets/sound/clickYou.wav'
@@ -366,16 +367,16 @@ const GridBoard = ({
     };
     try {
       const reponse = await axios.post(
-        `http://localhost:8080/api/user/history`,
+        `${URL}/api/user/history`,
         {
           ...data,
         }
       );
 
-      await axios.put(`http://localhost:8080/api/user/${data.idWinNode}`, {
+      await axios.put(`${URL}/api/user/${data.idWinNode}`, {
         plus: true,
       });
-      await axios.put(`http://localhost:8080/api/user/${data.idLoseNode}`, {
+      await axios.put(`${URL}/api/user/${data.idLoseNode}`, {
         plus: false,
       });
 

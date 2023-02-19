@@ -4,6 +4,7 @@ import SingleUser from "../icons/SingleUser";
 import CloseSetting from "../icons/CloseSetting";
 import Upload from "../icons/Upload";
 import axios from "axios";
+import URL from "../../api";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../Base";
 import "./index.scss";
@@ -46,7 +47,7 @@ function Setting({ userInfors, changeStateMenu }) {
       console.log('Age Approximation: ', userInfo.details.age)
       try {
         const response = await axios.put(
-          `http://localhost:8080/api/user/${userInfors.idNode}`,
+          `${URL}/api/user/${userInfors.idNode}`,
           {
             verify: true
           }
@@ -140,7 +141,7 @@ function Setting({ userInfors, changeStateMenu }) {
   const submitUpdate = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/user/${userInfors.idNode}`,
+        `${URL}/api/user/${userInfors.idNode}`,
         {
           imgUrl: imgUrl,
           userName: userName,

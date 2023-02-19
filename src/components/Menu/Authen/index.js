@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import URL from "../../../api";
 import Key from "../../icons/Key";
 import SingleUser from "../../icons/SingleUser";
 import Confirm from "../../icons/Confirm";
@@ -157,7 +158,7 @@ const Authen = ({
     console.log("id", idFace);
     try {
       const reponse = await axios.get(
-        `http://localhost:8080/api/face/${idFace}`
+        `${URL}/api/face/${idFace}`
       );
 
       console.log(reponse.data);
@@ -182,7 +183,7 @@ const Authen = ({
       ) {
         try {
           const reponse = await axios.get(
-            `http://localhost:8080/api/user/${data.username[0]}/${data.password[0]}`
+            `${URL}/api/user/${data.username[0]}/${data.password[0]}`
           );
 
           console.log(reponse.data);
@@ -203,7 +204,7 @@ const Authen = ({
     } else {
       try {
         if (data.password[0] === data.confirmpassword[0]) {
-          const reponse = await axios.post(`http://localhost:8080/api/user`, {
+          const reponse = await axios.post(`${URL}/api/user`, {
             id: uuidv4(),
             userName: data.username[0],
             password: data.password[0],

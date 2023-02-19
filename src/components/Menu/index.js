@@ -65,7 +65,7 @@ const Menu = ({
               Easy
             </div>
             <div className={difficulty==='Normal' ? "choice-btn active" : "choice-btn"} onClick={setNormalMode}>
-              Normal
+              Medium
             </div>
             <div className={difficulty==='Hard' ? "choice-btn active" : "choice-btn"} onClick={setHardMode}>
               Hard
